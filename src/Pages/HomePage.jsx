@@ -49,7 +49,7 @@ export default function HomePage() {
   return (
     <div className="homepage">
       <header className="navbar">
-        <div className="logo">AutoForm AI</div>
+        <div className="logo">AutoForm AI </div>
         <button
           className="hamburger"
           aria-label="Toggle navigation"
