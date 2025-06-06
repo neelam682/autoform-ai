@@ -1,0 +1,171 @@
+/* Claude-style Auth Modal CSS */
+
+:root {
+  --background-glass: rgba(5, 7, 26, 0.6);
+  --overlay-glow: rgba(255, 255, 255, 0.08);
+  --input-bg: rgba(255, 255, 255, 0.03);
+  --button-bg: rgba(255, 255, 255, 0.06);
+  --text-color: #ffffff;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --accent-color: #6b9dfc;
+  --danger-color: #ff6a6a;
+}
+
+.auth-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--background-glass);
+  backdrop-filter: blur(18px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.4s ease;
+}
+
+.modal-content {
+  background: linear-gradient(to bottom right, rgba(20, 20, 30, 0.95), rgba(10, 10, 20, 0.95));
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+  padding: 32px;
+  width: 95%;
+  max-width: 420px;
+  color: var(--text-color);
+  position: relative;
+  animation: slideUp 0.5s ease;
+}
+
+.close-button {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: var(--text-color);
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.close-button:hover {
+  opacity: 1;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--text-color);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+input {
+  background: var(--input-bg);
+  border: 1px solid var(--border-color);
+  padding: 12px;
+  border-radius: 10px;
+  color: var(--text-color);
+  outline: none;
+  font-size: 15px;
+  transition: border 0.2s ease;
+}
+
+input:focus {
+  border-color: var(--accent-color);
+}
+
+button[type="submit"] {
+  background: var(--accent-color);
+  color: #000;
+  padding: 12px;
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background: #5b8df0;
+}
+
+.auth-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.auth-options button {
+  background: var(--button-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.auth-options button:hover {
+  background: var(--overlay-glow);
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+  transition: opacity 0.2s ease;
+}
+
+.link-button:hover {
+  opacity: 0.8;
+}
+
+.switch-mode {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+.error-message {
+  color: var(--danger-color);
+  font-size: 13px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
