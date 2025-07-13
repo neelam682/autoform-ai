@@ -19,8 +19,30 @@ export default async function handler(req, res) {
     });
 
     const data = await gptResponse.json();
-    return res.status(200).json({ result: data.choices[0].message.content });
+
+    // 🧠 Debug log to inspect structure
+    console.log("🌐 GPT raw response:", JSON.stringify(data));
+
+    // ✅ Check for GPT content
+    if (
+      data &&
+      Array.isArray(data.choices) &&
+      data.choices[0]?.message?.content
+    ) {
+      return res.status(200).json({ result: data.choices[0].message.content });
+    }
+
+    // ❌ Otherwise return full raw data for inspection
+    return res.status(500).json({
+      error: "Invalid GPT response",
+      raw: data,
+    });
+
   } catch (err) {
-    return res.status(500).json({ error: "GPT API failed", details: err.message });
+    console.error("❌ GPT fetch failed:", err.message);
+    return res.status(500).json({
+      error: "GPT API failed",
+      details: err.message,
+    });
   }
 }
