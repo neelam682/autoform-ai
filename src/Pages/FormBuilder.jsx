@@ -41,17 +41,21 @@ const FormBuilder = () => {
         setFields([]);
 
         const prompt = `
-Generate a JSON array of standard form fields for: "${formPurpose}".
-Country: ${userCountry}
-Each field should have: 
-- label
-- type [text, email, number, date, textarea, select, checkbox]
-- required
-- options (if select)
-- default (if possible, based on: ${JSON.stringify(user || {})})
+You are a form-building assistant. 
+Given the form purpose "${formPurpose}" and country "${userCountry}", generate a JSON array of form fields.
 
-Return ONLY valid JSON array.
-Example: [
+Each field must include:
+- label
+- type (text, email, number, date, textarea, select, checkbox)
+- required (true/false)
+- default (if possible)
+
+Do not include any explanation or formatting — ONLY return a raw valid JSON array.
+
+Use this user object as context: ${JSON.stringify(user || {})}
+
+Example:
+[
   {
     "label": "Full Name",
     "type": "text",
@@ -59,7 +63,8 @@ Example: [
     "default": "John Doe"
   }
 ]
-    `;
+`;
+
 
         try {
             const result = await generateFormWithGPT(prompt);
